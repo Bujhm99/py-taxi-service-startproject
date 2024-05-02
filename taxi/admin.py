@@ -3,6 +3,7 @@ from .models import Driver, Car, Manufacturer
 from django.contrib.auth.admin import UserAdmin
 
 
+@admin.register(Driver)
 class DriverAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("license_number",)
     fieldsets = (UserAdmin.fieldsets
@@ -13,11 +14,12 @@ class DriverAdmin(UserAdmin):
                          {"fields": for_flake}),))
 
 
+@admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
     search_fields = ("model",)
     list_filter = ("manufacturer",)
 
 
 admin.site.register(Manufacturer)
-admin.site.register(Car, CarAdmin)
-admin.site.register(Driver, DriverAdmin)
+# admin.site.register(Car, CarAdmin)
+# admin.site.register(Driver, DriverAdmin)
